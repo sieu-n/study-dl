@@ -13,7 +13,7 @@ My list of paper reviews on deep learning.
 ## Multilingual
 
 ## Tokenization
-[Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates, ACL 2018]("/paper-review/Subword Regularization Improving Neural Network Tr 7f23ecbb8d904733816e65b805d87248.md")
+[Subword Regularization: Improving Neural Network Translation Models with Multiple Subword Candidates, ACL 2018](</paper-review/Subword Regularization Improving Neural Network Tr 7f23ecbb8d904733816e65b805d87248.md>)
 
 ## Document AI
 
