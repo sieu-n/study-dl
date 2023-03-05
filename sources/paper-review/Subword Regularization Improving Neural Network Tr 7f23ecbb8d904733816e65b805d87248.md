@@ -13,11 +13,11 @@ Tags: nlp, tokenization
 
 ### (motivation) A sentence can be represented in multiple subword sequences even with the same vocabulary
 
-![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled.png)
+![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled.png)
 
 BPE encodes a sentence into a unique subword sequence. Suppose in an NMT scenario where X is the source language passage and Y is the target language passage. Expressing `P(Y | X)` as the formula above for the sequence of subwords X, Y can be incorrect when X, Y can actually be multiple subword sequences. 
 
-![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%201.png)
+![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%201.png)
 
 Subword regularization acknowledges the issue and addresses it by randomly sampling subword sequences.
 
@@ -29,11 +29,11 @@ Subword regularization acknowledges the issue and addresses it by randomly sampl
     
 2. To consider that X, Y can be segmented into multiple subword sequences, we should like to optimize L_marginal.
     
-    ![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%203.png)
+    ![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%203.png)
     
 3. Since exact optimization of L_marginal is impossible, we sample `k` subword sequences from P(x | X) and P(y | Y) and optimize the log-likelihood for these sequences. 
     
-    ![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%204.png)
+    ![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%204.png)
     
 4. In particular, a single randomized segment is sampled for x, y (i.e. `k = 1`).
 
@@ -44,7 +44,7 @@ During decoding, the authors suggest an **n-best decoding** algorithm:
 1. Given n-best subword sequences of X (x_1, … x_n), 
 2. the best translation y* should have the largest length-normalized log-likelihood during decoding. In particular, y* should maximize the following score for some x.
     
-    ![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%205.png)
+    ![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%205.png)
     
 
 ### (method) Unigram language model for subword segmentation
@@ -55,17 +55,17 @@ Using BPE-based tokenizers to compute `P(x | X)` for subword normalization is no
 
 **Definition**
 
-![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%206.png)
+![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%206.png)
 
 The authors propose a unigram language model that assumes that each subword occurs independently. Here, you can write `P(x)` of a subword sequence `x` as the product of the probability of each subword occurring..
 
-![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%207.png)
+![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%207.png)
 
 The most probable sequence x* from `S(X)` a set of segmentation candidates built from X can be obtained efficiently using the [Viterbi algorithm](https://ratsgo.github.io/data%20structure&algorithm/2017/11/14/viterbi/).
 
 **Training unigram model**
 
-![Screen Shot 2023-03-05 at 3.52.40 PM.png](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Screen_Shot_2023-03-05_at_3.52.40_PM.png)
+![Screen Shot 2023-03-05 at 3.52.40 PM.png](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Screen_Shot_2023-03-05_at_3.52.40_PM.png)
 
 The unigram model should be trained to maximize the likelihood L above. The algorithm jointly optimizes vocabulary set `V` and occurrence probabilities:
 
@@ -84,7 +84,7 @@ The unigram model should be trained to maximize the likelihood L above. The algo
 1. Sample `l-best` segmentations according to the probability P(x | X)
 2. Single(because `k=1`) segmentation is sampled from the `l-best` segmentations weighted on smoothed probabilities.
     
-    ![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%208.png)
+    ![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%208.png)
     
 
 - `l-best` search is performed in linear time with the Forward-DP Backward-A* algorithm
@@ -94,17 +94,17 @@ The unigram model should be trained to maximize the likelihood L above. The algo
 
 - Main result on NMT
     
-    ![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%209.png)
+    ![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%209.png)
     
     - Unigram LM without subword regularization(l=1) and BPE show similar performance.
     - `l=64` shows significant BLEU improvements.
     - n-best decoding provides further gains for `l ≠ 1` , but degrades the performance for `l = 1`. This indicates that the model is confused about multiple segmentations when they are not explored at training time.
 - Results on OOD corpus
     
-    ![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%2010.png)
+    ![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%2010.png)
     
     - The results are even more significant on the OOD corpus.
 - Hyperparameter: subword regularization has two hyperparameters: `l`: size of sampling candidates, `α`: smoothing constant.
     - Tuning the value of `α` < 1 was crucial.
     
-    ![Untitled](/sources/paper-review/Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%2011.png)
+    ![Untitled](Subword%20Regularization%20Improving%20Neural%20Network%20Tr%207f23ecbb8d904733816e65b805d87248/Untitled%2011.png)
