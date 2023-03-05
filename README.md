@@ -1,6 +1,9 @@
 # study-dl
 My list of paper reviews on deep learning. 
 
+For table of contents, use Github's feature:
+![Untitled](/sources/common/toc.png)
+
 # Notion
 - [root](https://deep-learning.notion.site/deep-learning/Resources-f81e71ca1c7840e79d316f6333960312)
 - [🎻 Paper summary](https://deep-learning.notion.site/d289af4db0224fb4987187499ac538ee?v=7d6d3155ce874cb3b92c3f330b31429b)
